@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1055069682444",
+    "project_id": "koreanlanguagelearningapp",
+    "storage_bucket": "koreanlanguagelearningapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055069682444:android:3834bd995f15d8276ae729",
+        "android_client_info": {
+          "package_name": "com.kharagedition.korean_language_learning_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055069682444-lp7ds3u940dequcfinm75n3iuv6pokao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqU1GVGmt64ny2l9_1UYAoh7qoNIZw_Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055069682444-lp7ds3u940dequcfinm75n3iuv6pokao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
