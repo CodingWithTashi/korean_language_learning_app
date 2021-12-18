@@ -5,13 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:korean_language_learning_app/l10n/l10n.dart';
-import 'package:korean_language_learning_app/l10n/localization_delegate.dart';
 import 'package:korean_language_learning_app/servie_locater.dart';
 import 'package:korean_language_learning_app/util/application_util.dart';
 import 'package:korean_language_learning_app/util/route_generator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +16,7 @@ void main() async {
     MobileAds.instance.initialize();
   }
   setupLocator();
-  GetIt.I.isReady<SharedPreferences>().then((_) {
-    runApp(const MyApp());
-  });
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

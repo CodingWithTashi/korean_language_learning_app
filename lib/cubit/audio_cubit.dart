@@ -1,57 +1,57 @@
 import 'package:bloc/bloc.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:korean_language_learning_app/service/audio_service.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:korean_language_learning_app/util/exception.dart';
 
 part 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
-  final AudioService audioService;
-  AudioPlayer audioPlayer;
-  AudioCubit(this.audioService, {required this.audioPlayer})
-      : super(AudioInitial()) {
+  FlutterTts flutterTts;
+  AudioCubit({required this.flutterTts}) : super(AudioInitial()) {
     initAudioListener();
   }
 
-  Future<void> loadAudio(
-      {required String pathName, required String fileName}) async {
+  Future<void> loadAudio() async {
     try {
       emit(AudioLoading());
-      audioPlayer =
-          await audioService.loadAudioFromPath(pathName, fileName, audioPlayer);
-      emit(AudioLoaded(audioPlayer));
+      await flutterTts.setLanguage("ko-KR");
+      await flutterTts.setPitch(1);
+      emit(AudioLoaded(flutterTts));
       //listenToAudio();
     } on AudioException catch (e) {
       print(e.error());
     }
   }
 
-  Future<void> loadAudioByAssetPath({required String assetPath}) async {
-    try {
-      emit(AudioLoading());
-      audioPlayer =
-          await audioService.loadAudioFromAssetPath(assetPath, audioPlayer);
-      emit(AudioLoaded(audioPlayer));
-      //listenToAudio();
-    } on AudioException catch (e) {
-      print(e.error());
-    }
-  }
-
-  Future<void> playAudio() async {
-    await audioPlayer.play();
+  Future<void> playAudio(String koreanPronoun) async {
+    await flutterTts.speak(koreanPronoun);
   }
 
   Future<void> pauseAudio() async {
-    await audioPlayer.pause();
+    await flutterTts.pause();
   }
 
   Future<void> stopAudio() async {
-    await audioPlayer.seek(Duration.zero);
-    pauseAudio();
+    await flutterTts.stop();
+    //pauseAudio();
   }
 
   void initAudioListener() {
+    flutterTts.setStartHandler(() {
+      emit(AudioPlaying());
+    });
+
+    flutterTts.setCompletionHandler(() {
+      emit(AudioStopped());
+    });
+
+    flutterTts.setErrorHandler((msg) {
+      emit(AudioStopped());
+    });
+    flutterTts.setCancelHandler(() {
+      emit(AudioStopped());
+    });
+/*
+
     audioPlayer.playerStateStream.listen((playerState) {
       final isPlaying = playerState.playing;
       final processingState = playerState.processingState;
@@ -70,20 +70,10 @@ class AudioCubit extends Cubit<AudioState> {
         audioPlayer.seek(Duration.zero);
         audioPlayer.pause();
       }
-    });
-  }
-
-  void toggleRepeatMode() {
-    if (audioPlayer.loopMode == LoopMode.off) {
-      audioPlayer.setLoopMode(LoopMode.one);
-      emit(AudioRepeatOn());
-    } else if (audioPlayer.loopMode == LoopMode.one) {
-      audioPlayer.setLoopMode(LoopMode.off);
-      emit(AudioRepeatOff());
-    }
+    });*/
   }
 
   void destroyAudioPlayer() {
-    audioPlayer.dispose();
+    flutterTts.cancelHandler!();
   }
 }

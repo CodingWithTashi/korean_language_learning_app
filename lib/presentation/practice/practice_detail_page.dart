@@ -46,7 +46,7 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: Container(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -94,9 +94,19 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
                     decoration: ApplicationUtil.getBoxDecorationOne(context),
-                    child: Text(
-                      alphabetList[index].alphabetName,
-                      style: TextStyle(fontSize: 80, color: Colors.white),
+                    child: Column(
+                      children: [
+                        Text(
+                          alphabetList[index].alphabetName,
+                          style: const TextStyle(
+                              fontSize: 80, color: Colors.white),
+                        ),
+                        Text(
+                          alphabetList[index].englishPronoun,
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ],

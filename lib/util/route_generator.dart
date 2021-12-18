@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:korean_language_learning_app/cubit/audio_cubit.dart';
 import 'package:korean_language_learning_app/model/alphabet.dart';
 import 'package:korean_language_learning_app/model/verb.dart';
@@ -16,7 +16,6 @@ import 'package:korean_language_learning_app/presentation/practice/practice_list
 import 'package:korean_language_learning_app/presentation/practice/practice_menu_page.dart';
 import 'package:korean_language_learning_app/presentation/use_cases/use_case_item_list.dart';
 import 'package:korean_language_learning_app/presentation/use_cases/use_cases_menu.dart';
-import 'package:korean_language_learning_app/service/audio_service.dart';
 
 import 'constant.dart';
 
@@ -27,7 +26,7 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => LanguageTypePage(),
+          builder: (_) => HomePage(),
         );
       case HomePage.routeName:
         return MaterialPageRoute(
@@ -62,8 +61,7 @@ class RouteGenerator {
           if (settings.arguments != null && settings.arguments is Alphabet) {
             return MaterialPageRoute(
               builder: (_) => BlocProvider<AudioCubit>(
-                create: (context) =>
-                    AudioCubit(AudioService(), audioPlayer: AudioPlayer()),
+                create: (context) => AudioCubit(flutterTts: FlutterTts()),
                 child: AlphabetDetailPage(
                   alphabet: settings.arguments as Alphabet,
                 ),
@@ -97,8 +95,7 @@ class RouteGenerator {
           if (settings.arguments != null && settings.arguments is Verb) {
             return MaterialPageRoute(
               builder: (_) => BlocProvider<AudioCubit>(
-                create: (context) =>
-                    AudioCubit(AudioService(), audioPlayer: AudioPlayer()),
+                create: (context) => AudioCubit(flutterTts: FlutterTts()),
                 child: VerbDetailPage(
                   verb: settings.arguments as Verb,
                 ),
@@ -116,8 +113,7 @@ class RouteGenerator {
           if (settings.arguments != null && settings.arguments is UseCaseType) {
             return MaterialPageRoute(
               builder: (_) => BlocProvider<AudioCubit>(
-                create: (context) =>
-                    AudioCubit(AudioService(), audioPlayer: AudioPlayer()),
+                create: (context) => AudioCubit(flutterTts: FlutterTts()),
                 child: UseCaseItemList(
                   type: settings.arguments as UseCaseType,
                 ),

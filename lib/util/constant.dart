@@ -43,15 +43,15 @@ class AppConstant {
   static const String TEST_UNIT_ID = 'ca-app-pub-3940256099942544/6300978111';
   static const String APP_ID = 'ca-app-pub-8284901143739274~1421990473';
   static const String SHARE_URL =
-      'https://play.google.com/store/apps/details?id=com.kharagedition.tibetan_language_learning_app';
+      'https://play.google.com/store/apps/details?id=com.kharagedition.korean_language_learning_app';
   static const String MORE_URL =
       'https://play.google.com/store/apps/dev?id=5910382695653514663';
   static const String CALENDER_URL =
       'http://www.digitaltibetan.org/cgi-bin/phugpa.pl';
   static const String APP_URL =
-      'https://play.google.com/store/apps/details?id=com.kharagedition.tibetan_language_learning_app';
+      'https://play.google.com/store/apps/details?id=com.kharagedition.korean_language_learning_app';
   static const String VIEW_ON_WEB = 'Open Web App';
-  static const String WEB_URL = "https://tibetanlanguagelearningapp.web.app/#/";
+  static const String WEB_URL = "https://koreanlanguagelearningapp.web.app/#/";
 
   static List<Verb> verbsList = [
     Verb(

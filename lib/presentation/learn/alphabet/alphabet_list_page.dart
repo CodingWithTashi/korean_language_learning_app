@@ -91,9 +91,10 @@ class _AlphabetListPageState extends State<AlphabetListPage> {
               child: Container(
                 width: 250,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 decoration: ApplicationUtil.getBoxDecorationOne(context),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       alphabet.alphabetName,

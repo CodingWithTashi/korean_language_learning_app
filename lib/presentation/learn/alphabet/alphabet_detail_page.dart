@@ -65,9 +65,12 @@ class _AlphabetDetailPageState extends State<AlphabetDetailPage> {
                       ? AlphabetAudioControl(
                           pathName: 'assets/audio/',
                           fileName:
-                              alphabetList[selectedPageIndex].englishPronoun)
+                              alphabetList[selectedPageIndex].englishPronoun,
+                          koreanPronoun:
+                              alphabetList[selectedPageIndex].alphabetName,
+                        )
                       : Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
                             'No Audio Found, We will update and let you know',
                             textAlign: TextAlign.center,
@@ -110,15 +113,26 @@ class _AlphabetDetailPageState extends State<AlphabetDetailPage> {
                         padding: EdgeInsets.symmetric(vertical: 40),
                         decoration:
                             ApplicationUtil.getBoxDecorationOne(context),
-                        child: Text(
-                          alphabetList[index].alphabetName,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 120, color: Colors.white),
+                        child: Column(
+                          children: [
+                            Text(
+                              alphabetList[index].alphabetName,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 120, color: Colors.white),
+                            ),
+                            Text(
+                              alphabetList[index].englishPronoun,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 24, color: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.only(left: 55, right: 44),
+                        margin: const EdgeInsets.only(left: 55, right: 44),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

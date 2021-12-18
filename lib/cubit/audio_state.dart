@@ -13,8 +13,8 @@ class AudioInitial extends AudioState {
 }
 
 class AudioLoaded extends AudioState {
-  final AudioPlayer audio;
-  AudioLoaded(this.audio);
+  final FlutterTts flutterTts;
+  AudioLoaded(this.flutterTts);
 }
 
 class AudioPlay extends AudioState {

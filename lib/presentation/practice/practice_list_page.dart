@@ -77,8 +77,8 @@ class _PracticeListPageState extends State<PracticeListPage> {
                 physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
-                crossAxisSpacing: 30,
-                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 5,
                 crossAxisCount: 2,
                 children: List.generate(
                   alphabetList.length,
@@ -99,7 +99,7 @@ class _PracticeListPageState extends State<PracticeListPage> {
               ),
             ),
           ),
-          _getBannerAds()
+          //_getBannerAds()
         ],
       ),
       floatingActionButton: ApplicationUtil.getFloatingActionButton(context),
@@ -116,14 +116,23 @@ class _PracticeListPageState extends State<PracticeListPage> {
         flightShuttleBuilder: ApplicationUtil.flightShuttleBuilder,
         tag: alphabet,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           decoration: ApplicationUtil.getBoxDecorationOne(context),
-          width: 50,
-          height: 50,
+          width: 90,
+          height: 90,
           child: Center(
-            child: Text(
-              alphabet.alphabetName,
-              style: TextStyle(fontSize: 70, color: Colors.white),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  alphabet.alphabetName,
+                  style: const TextStyle(fontSize: 50, color: Colors.white),
+                ),
+                Text(
+                  alphabet.englishPronoun,
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
             ),
           ),
         ),

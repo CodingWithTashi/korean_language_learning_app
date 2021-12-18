@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:korean_language_learning_app/model/verb.dart';
 import 'package:korean_language_learning_app/presentation/widget/alphabet_audio_control.dart';
 import 'package:korean_language_learning_app/util/application_util.dart';
@@ -43,7 +42,7 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: Center(
         child: Container(
-          constraints: BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 500),
           child: Center(
             child: SingleChildScrollView(
               /*physics:
@@ -53,16 +52,18 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 500,
                     child: pageView,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   AlphabetAudioControl(
-                      pathName: 'assets/audio/words/',
-                      fileName: verbsList[selectedPageIndex].fileName)
+                    pathName: 'assets/audio/words/',
+                    fileName: verbsList[selectedPageIndex].fileName,
+                    koreanPronoun: verbsList[selectedPageIndex].wordInKorean,
+                  )
                 ],
               ),
             ),
@@ -75,7 +76,8 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
 
   void initPageView() {
     pageView = PageView.builder(
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics:
+          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       itemCount: verbsList.length,
       controller: controller,
       scrollDirection: Axis.horizontal,
@@ -93,8 +95,8 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
                     children: [
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        padding: EdgeInsets.symmetric(vertical: 40),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 40),
                         decoration:
                             ApplicationUtil.getBoxDecorationOne(context),
                         child: Image.asset(
@@ -106,7 +108,7 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
                       ),
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.only(left: 30, right: 20),
+                        margin: const EdgeInsets.only(left: 30, right: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -129,17 +131,30 @@ class _VerbDetailPageState extends State<VerbDetailPage> {
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: 50,
+                  const SizedBox(
+                    height: 30,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,
                     decoration: ApplicationUtil.getBoxDecorationOne(context),
-                    child: Text(
-                      verbsList[index].wordInKorean,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 50, color: Colors.white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          verbsList[index].wordInKorean,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 50, color: Colors.white),
+                        ),
+                        Text(
+                          verbsList[index].wordInEnglish,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ],

@@ -1,5 +1,5 @@
 name: korean_language_learning_app
-description: A new Flutter project.
+description: Korean Language Learning App
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -33,7 +33,6 @@ dependencies:
   painter: 2.0.0
   cupertino_icons: 1.0.2
   flutter_colorpicker: 1.0.3
-  just_audio: 0.9.7
   flutter_bloc: 7.1.0
   url_launcher: 6.0.9
   share_plus: 2.1.4
@@ -44,7 +43,6 @@ dependencies:
   firebase_crashlytics: ^2.2.1
   firebase_core: ^1.6.0
   firebase_analytics: ^9.0.3
-  shared_preferences: ^2.0.6
   google_fonts: ^2.1.0
   flutter_tts: ^3.2.3
 
@@ -55,6 +53,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: 0.9.1
+  flutter_native_splash: 1.2.1
+flutter_icons:
+  image_path: "assets/images/ic_launcher.png"
+  android: true
+  ios: true
+flutter_native_splash:
+  color: "#57612F"
+  image: assets/images/background.png
+  fullscreen: true
+  android: true
+  ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="korean_language_learning_app"
+        android:label="Korean Language Learning App"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

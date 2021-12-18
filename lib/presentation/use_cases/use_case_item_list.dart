@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:korean_language_learning_app/cubit/audio_cubit.dart';
 import 'package:korean_language_learning_app/model/word.dart';
 import 'package:korean_language_learning_app/util/application_util.dart';
@@ -21,14 +20,14 @@ class _UseCaseItemListState extends State<UseCaseItemList>
   late List<Word> wordList;
   late List<AnimationController> animatedIconControllerList = [];
   late final AudioCubit cubit;
-  late final AudioPlayer player;
   String selectedAudio = '';
 
   @override
   void initState() {
-    player = AudioPlayer();
     cubit = BlocProvider.of<AudioCubit>(context);
     wordList = AppConstant.getWordList(widget.type, this);
+    cubit.loadAudio();
+
     super.initState();
   }
 
@@ -136,14 +135,12 @@ class _UseCaseItemListState extends State<UseCaseItemList>
                                 return GestureDetector(
                                   onTap: () async {
                                     selectedAudio = word.english;
-                                    cubit.loadAudioByAssetPath(
-                                        assetPath: word.assetPath);
                                     if (state is AudioLoaded ||
                                         state is AudioStopped ||
                                         state is AudioPause ||
                                         state is AudioRepeatOff ||
                                         state is AudioRepeatOn) {
-                                      cubit.playAudio();
+                                      cubit.playAudio(word.koreanWord);
                                     }
                                     if (state is AudioPlaying) {
                                       cubit.pauseAudio();
