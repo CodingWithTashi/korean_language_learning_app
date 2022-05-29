@@ -36,7 +36,7 @@ class _PracticeListPageState extends State<PracticeListPage> {
         onAdImpression: (Ad ad) => print('Ad impression.'),
       );
       myBanner = BannerAd(
-        adUnitId: AppConstant.TEST_UNIT_ID,
+        adUnitId: AppConstant.BANNER_AD_PRACTICE_MENU_UNIT_ID,
         size: AdSize.banner,
         request: AdRequest(),
         listener: listener,
@@ -99,7 +99,7 @@ class _PracticeListPageState extends State<PracticeListPage> {
               ),
             ),
           ),
-          //_getBannerAds()
+          _getBannerAds()
         ],
       ),
       floatingActionButton: ApplicationUtil.getFloatingActionButton(context),

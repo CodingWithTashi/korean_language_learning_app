@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:korean_language_learning_app/presentation/learn/learn_menu_page.dart';
-import 'package:korean_language_learning_app/presentation/practice/practice_list_page.dart';
 import 'package:korean_language_learning_app/presentation/practice/practice_menu_page.dart';
 import 'package:korean_language_learning_app/presentation/use_cases/use_cases_menu.dart';
 import 'package:korean_language_learning_app/util/application_util.dart';
@@ -23,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   double _buttonOpacity = 0;
   bool isExtended = false;
   late BannerAd myBanner;
-  late RewardedAd myRewarded;
   late BannerAdListener listener;
   late AdWidget adWidget;
 
@@ -34,7 +32,6 @@ class _HomePageState extends State<HomePage> {
       setState(() {});
     });
     if (!kIsWeb) {
-      _loadRewardedAd();
       initBannerAds();
     }
 
@@ -57,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           _getBackgroundImage(),
           _getButtons(),
           _getBottomSheetButton(),
-          //_topBannerAds(),
+          _topBannerAds(),
         ],
       ),
       //floatingActionButton: _getHomeFab(),
@@ -145,43 +142,6 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  _getHomeFab() => FloatingActionButton.extended(
-        onPressed: () {
-          //isExtended = !isExtended;
-          if (!isExtended) {
-            playVideoAds();
-          }
-          playVideoAds();
-          //setState(() {});
-        },
-        label: AnimatedSwitcher(
-          duration: Duration(milliseconds: ApplicationUtil.ANIMATION_DURATION),
-          transitionBuilder: (Widget child, Animation<double> animation) =>
-              FadeTransition(
-            opacity: animation,
-            child: SizeTransition(
-              child: child,
-              sizeFactor: animation,
-              axis: Axis.horizontal,
-            ),
-          ),
-          child: isExtended
-              ? Icon(Icons.play_arrow)
-              : Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4.0),
-                      child: Icon(Icons.play_arrow),
-                    ),
-                    Text(
-                      'Play Game',
-                      style: TextStyle(fontSize: 16),
-                    )
-                  ],
-                ),
-        ),
-      );
-
   _getBackgroundImage() => Hero(
         tag: 'image',
         child: Container(
@@ -258,43 +218,6 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  void playVideoAds() {
-    myRewarded.show(onUserEarnedReward: (RewardedAd ad, RewardItem rewardItem) {
-      print('user earned');
-      Navigator.pushNamed(context, LearnMenuPage.routeName);
-    }).catchError((e) => print("error in showing ad: ${e.toString()}"));
-    myRewarded.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (RewardedAd ad) =>
-          print('$ad onAdShowedFullScreenContent.'),
-      onAdDismissedFullScreenContent: (RewardedAd ad) {
-        print('$ad onAdDismissedFullScreenContent.');
-        ad.dispose();
-      },
-      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
-        print('$ad onAdFailedToShowFullScreenContent: $error');
-        ad.dispose();
-      },
-      onAdImpression: (RewardedAd ad) => print('$ad impression occurred.'),
-    );
-  }
-
-  void _loadRewardedAd() {
-    RewardedAd.load(
-        adUnitId: 'ca-app-pub-3940256099942544/5224354917',
-        request: AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(
-          onAdLoaded: (RewardedAd ad) {
-            print('$ad loaded.');
-            // Keep a reference to the ad so you can show it later.
-            this.myRewarded = ad;
-          },
-          onAdFailedToLoad: (LoadAdError error) {
-            print('RewardedAd failed to load: $error');
-            _loadRewardedAd();
-          },
-        ));
-  }
-
   void initBannerAds() {
     listener = BannerAdListener(
       // Called when an ad is successfully received.
@@ -313,7 +236,7 @@ class _HomePageState extends State<HomePage> {
       onAdImpression: (Ad ad) => print('Ad impression.'),
     );
     myBanner = BannerAd(
-      adUnitId: AppConstant.TEST_UNIT_ID,
+      adUnitId: AppConstant.BANNER_AD_HOME_UNIT_ID,
       size: AdSize.banner,
       request: AdRequest(),
       listener: listener,

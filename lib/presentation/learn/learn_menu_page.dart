@@ -33,7 +33,7 @@ class _LearnMenuPageState extends State<LearnMenuPage> {
         onAdImpression: (Ad ad) => print('Ad impression.'),
       );
       myBanner = BannerAd(
-        adUnitId: AppConstant.TEST_UNIT_ID,
+        adUnitId: AppConstant.BANNER_AD_LEARN_MENU_UNIT_ID,
         size: AdSize.banner,
         request: AdRequest(),
         listener: listener,
@@ -92,7 +92,7 @@ class _LearnMenuPageState extends State<LearnMenuPage> {
               ),
             ),
           ),
-          //_getBannerAds()
+          _getBannerAds()
         ],
       ),
       floatingActionButton: ApplicationUtil.getFloatingActionButton(context),

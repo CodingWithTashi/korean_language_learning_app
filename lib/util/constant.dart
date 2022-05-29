@@ -10,19 +10,8 @@ enum UseCaseType {
   FAMILY,
   NUMBERS,
 }
-enum AlphabetCategoryType {
-  ALPHABET,
-  VOWEL,
-  FIVE_PREFIX,
-  TEN_SUFFIX,
-  TWO_POSTFIX,
-  RAGO,
-  LAGO,
-  SAGO,
-  YATAK,
-  RATAK,
-  LATAK
-}
+
+enum AlphabetCategoryType { ALPHABET, VOWEL }
 
 class AlphabetType {
   AlphabetCategoryType type = AlphabetCategoryType.ALPHABET;
@@ -35,19 +24,20 @@ class AppConstant {
   static const String EMAIL = 'developer.kharag@gmail.com';
   static const String SUBJECT = 'Feedback & report';
   static const String BANNER_AD_HOME_UNIT_ID =
-      'ca-app-pub-8284901143739274/2994092444';
+      'ca-app-pub-8284901143739274/7326248729';
   static const String BANNER_AD_LEARN_MENU_UNIT_ID =
-      'ca-app-pub-8284901143739274/6651100571';
+      'ca-app-pub-8284901143739274/4048806435';
   static const String BANNER_AD_PRACTICE_MENU_UNIT_ID =
-      'ca-app-pub-8284901143739274/9771506718';
+      'ca-app-pub-8284901143739274/2328568641';
+  static const String BANNER_AD_PRACTICE_LIST_PAGE_UNIT_ID =
+      'ca-app-pub-8284901143739274/3258506932';
   static const String TEST_UNIT_ID = 'ca-app-pub-3940256099942544/6300978111';
-  static const String APP_ID = 'ca-app-pub-8284901143739274~1421990473';
+  static const String APP_ID = 'ca-app-pub-8284901143739274~8509330276';
+  static const String TEST_APP_ID = 'ca-app-pub-3940256099942544~3347511713';
   static const String SHARE_URL =
       'https://play.google.com/store/apps/details?id=com.kharagedition.korean_language_learning_app';
   static const String MORE_URL =
       'https://play.google.com/store/apps/dev?id=5910382695653514663';
-  static const String CALENDER_URL =
-      'http://www.digitaltibetan.org/cgi-bin/phugpa.pl';
   static const String APP_URL =
       'https://play.google.com/store/apps/details?id=com.kharagedition.korean_language_learning_app';
   static const String VIEW_ON_WEB = 'Open Web App';
@@ -218,42 +208,6 @@ class AppConstant {
       case AlphabetCategoryType.VOWEL:
         {
           return _vowelList();
-        }
-      case AlphabetCategoryType.FIVE_PREFIX:
-        {
-          return _fivePrefixList();
-        }
-      case AlphabetCategoryType.TEN_SUFFIX:
-        {
-          return _tenSuffixList();
-        }
-      case AlphabetCategoryType.TWO_POSTFIX:
-        {
-          return _twoPostfixList();
-        }
-      case AlphabetCategoryType.RAGO:
-        {
-          return _ragoList();
-        }
-      case AlphabetCategoryType.LAGO:
-        {
-          return _lagoList();
-        }
-      case AlphabetCategoryType.SAGO:
-        {
-          return _sogoList();
-        }
-      case AlphabetCategoryType.YATAK:
-        {
-          return _yatakList();
-        }
-      case AlphabetCategoryType.RATAK:
-        {
-          return _ratakList();
-        }
-      case AlphabetCategoryType.LATAK:
-        {
-          return _latakist();
         }
       default:
         return [];
@@ -814,8 +768,8 @@ class AppConstant {
     return [
       Word(
         english: 'Zero',
-        koreanWord: 'ཀླད་ཀོར།',
-        englishSound: 'lhai koy',
+        koreanWord: '영',
+        englishSound: 'yeong',
         assetPath: 'assets/audio/number/zero.mp3',
         animationController: AnimationController(
           vsync: useCaseItemListState,
